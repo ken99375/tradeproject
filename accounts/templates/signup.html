@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}メルケン -会員登録ページ-{% endblock  %}
+
+    {% block contents %}
+    
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-2">
+                <h3>会員登録<h3>
+                <!--formタグの間を送信-->
+                <form method = "post">
+                    <!--クロスサイト系の攻撃を防ぐ-->
+                    {% csrf_token %}
+                    <!--views.pyで使用するCustomUserCreationFormを指定し格納する-->
+                    {% for field in form %}
+                    <p>
+                        <!--ラベルを出力-->
+                        {{field.label_tag}}<br>
+                        <!--inputを出力-->
+                        {{field}}
+                        <!--help_textは備考のような有無であり-->
+                        {% if field.help_text %}
+                            <small style="color: grey">{{ field.help_text }}</small>
+                        {% endif %}
+                        <!--エラー発生時のテキストerrorsを出力-->
+                        {% for error in field.errors%}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                
+                    </p>
+                    {% endfor %}
+                    <input type="submit" value="Sign up">
+                </form>
+                <br>
+                <p><a href="{% url "trade:index" %}">
+                </p>
+            </div>
+        </div>
+    </div>
+        
+    {% endblock contents %}

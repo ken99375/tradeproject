@@ -1,0 +1,14 @@
+<!--base.htmlを引き継ぐ(extends)-->
+<!--ベースを使って違うところだけ書き換える-->
+{% extends "base.html" %}
+
+{% block title %}メルケン -学校内最小のネットオークション-{% endblock title %}
+
+{% block contents %}
+
+    {% include "trade_title.html" %}
+
+    {% include "trade_list.html" %}
+
+    {% include "pagination.html" %}
+{% endblock  %} 

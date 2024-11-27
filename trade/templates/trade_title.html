@@ -1,0 +1,37 @@
+  <!-- タイトルとナビゲーションボタン -->
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        
+        {% if user.is_authenticated %}
+        <h2>ようこそ！{{user.username}}さん！</h3>
+        {% else %}
+        <h2>ようこそ！</h2>
+        {% endif %}
+        <!-- タイトルと本文 -->
+        <h1><font face="Script">MERKEN</font><br/></h1>
+        <p class="lead text-muted">
+        学校内最小のネットフリーマーケット！出品から購入まで様々な商品を取り扱っております！</p>
+        <p>
+          <!-- ナビゲーションボタン -->
+          {% if user.is_authenticated %}
+          <!-- ログイン中のボタン -->
+          <a href="{% url "trade:post" %}"
+              class="btn btn-primary my-2">出品する</a>
+          <a href="{% url "accounts:logout" %}"
+              class="btn btn-secondary my-2">ログアウト</a>
+          <a href="{% url "trade:contact" %}"
+              class="btn btn-success my-2">お問い合わせ</a>
+          {% else %}
+          <!-- ログイン状態ではない場合のボタン -->
+          <a href="{% url "accounts:signup" %}"
+              class="btn btn-danger my-2">今すぐサインアップ</a>
+          <a href="{% url "accounts:login" %}"
+              class="btn btn-primary my-2">登録済みの方はログイン</a>
+          <a href="{% url "trade:contact" %}"
+              class="btn btn-success my-2">お問い合わせ</a>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </section>

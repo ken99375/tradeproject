@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}メルケン -お問い合わせページ-{% endblock title %}
+
+{% block contents %}
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <h1><font face="Script">お問い合わせページ</font><br/></h1>
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <h2 style="color:red">商品が届かない、不良品だったなどの不備があれば
+                                                こちらに連絡してください。
+                        </h2>
+                                {% if messages %}
+                                    <ul class="list-unstyled" style = "list-style: none;">
+                                    {% for message in messages %}
+                                    <li {%if message.tags %} class="{{message.tags}}" {%endif%}>
+                                {{message}}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                                {%endif%}
+                                <div class="my-5">
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        {% for field in form %}
+                                            <div class = "form-floating">
+                                                <div class="form-group floating-label-form-group controls">
+                                                    {{ field.label_tag}}
+                                                    {{field}}
+                                                    <p class="help-block text-danger"></p>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <br>
+                                        <button type="submit"class="btn btn-primary" id="sendMessageButton">Send</button>
+                                <!--Submit Button-->
+                                    </form>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+{% endblock %}
+
